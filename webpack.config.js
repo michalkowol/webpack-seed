@@ -5,11 +5,13 @@ const prod = process.env.NODE_ENV === 'production';
 
 module.exports = {
   devtool: prod ? '' : 'source-map',
-  entry: [
+  entry: prod ? [
+    './src/js/index'
+  ] : [
     'react-hot-loader/patch',
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
-    './src/js/index.jsx'
+    './src/js/index'
   ],
   output: {
     filename: 'bundle.js',
@@ -29,7 +31,10 @@ module.exports = {
       }
     ]
   },
-  plugins: [
+  plugins: prod ? [
+    new webpack.DefinePlugin({'process.env': {NODE_ENV: JSON.stringify('production')}}),
+    new webpack.optimize.UglifyJsPlugin()
+  ] : [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin()
