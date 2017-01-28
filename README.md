@@ -4,14 +4,23 @@
 
 ## Development
 
+### Pre-requisites
+
+```
+brew update
+brew install yarn
+```
+
+### Usage
+
 ```bash
-npm intsall
+yarn
 npm start
 ```
 
 ## Build
 
 ```bash
-npm intsall
+yarn
 npm run build
 ```

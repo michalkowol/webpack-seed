@@ -7,6 +7,9 @@
     "url": "https://github.com/michalkowol/webpack-seed"
   },
   "license": "ISC",
+  "scripts": {
+    "start": "webpack --config webpack.config.js"
+  },
   "dependencies": {
     "bootstrap": "3.3.x",
     "immutable": "3.8.x",
