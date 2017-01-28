@@ -8,7 +8,10 @@
   },
   "license": "ISC",
   "scripts": {
-    "start": "webpack --config webpack.config.js"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:dev": "webpack-dev-server",
+    "start:prod": "cross-env NODE_ENV=production webpack && node server.js",
+    "build": "cross-env NODE_ENV=production webpack"
   },
   "dependencies": {
     "bootstrap": "3.3.x",
@@ -21,6 +24,8 @@
   },
   "devDependencies": {
     "webpack": "2.2.x",
-    "webpack-dev-server": "2.2.x"
+    "webpack-dev-server": "2.2.x",
+    "cross-env": "3.1.x",
+    "if-env": "1.0.x"
   }
 }

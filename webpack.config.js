@@ -1,6 +1,24 @@
+const path = require('path');
+const webpack = require('webpack');
+
+const prod = process.env.NODE_ENV === 'production';
+
 module.exports = {
-  entry: './src/app.js',
+  entry: './src/js/app.js',
   output: {
-    filename: './dist/bundle.js'
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'
+  },
+  devtool: prod ? '' : 'source-map',
+  module: {
+  },
+  plugins: [
+  ],
+  devServer: {
+    host: 'localhost',
+    port: 3000,
+    hot: true,
+    contentBase: './src'
   }
 }
