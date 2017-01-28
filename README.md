@@ -1,4 +1,4 @@
-# [http://www.optykcomputer.hg.pl](www.optykcomputer.hg.pl)
+# Webpack seed
 
 [http://localhost:3000](http://localhost:3000)
 

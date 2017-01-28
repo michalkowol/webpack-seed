@@ -1,20 +1,19 @@
 {
-  "name": "optykcomputer",
+  "name": "webpack-seed",
   "version": "1.0.0",
-  "description": "webpack-ts-seed",
+  "description": "webpack-seed",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:dev": "node server.js",
-    "start:prod": "NODE_ENV=production webpack && node server.js",
-    "build": "NODE_ENV=production webpack"
+    "start:prod": "cross-env NODE_ENV=production webpack && node server.js",
+    "build": "cross-env NODE_ENV=production webpack"
   },
   "dependencies": {
     "bootstrap": "3.3.x",
     "immutable": "3.8.x",
     "jquery": "3.1.x",
-    "lodash": "4.13.x",
-    "react": "15.2.x",
-    "react-dom": "15.2.x",
+    "lodash": "4.14.x",
+    "react": "15.3.x",
     "react-redux": "4.4.x",
     "redux": "3.5.x"
   },
@@ -23,10 +22,13 @@
     "babel-loader": "6.2.x",
     "babel-preset-es2015": "6.9.x",
     "babel-preset-react": "6.11.x",
+    "babel-preset-react-hmre": "1.1.x",
+    "babel-register": "6.11.x",
+    "cross-env": "2.0.x",
     "css-loader": "0.23.x",
     "file-loader": "0.9.x",
     "if-env": "1.0.x",
-    "react-hot-loader": "^3.0.0-alpha.9",
+    "react-hot-loader": "^3.0.0-beta.2",
     "redux-devtools": "3.3.x",
     "style-loader": "0.13.x",
     "webpack": "1.13.x",
