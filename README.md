@@ -2,8 +2,6 @@
 
 [http://localhost:3000](http://localhost:3000)
 
-## Development
-
 ## Pre-requisites
 
 ```
@@ -11,7 +9,7 @@ brew update
 brew install yarn
 ```
 
-## Usage
+## Development
 
 ```bash
 yarn
