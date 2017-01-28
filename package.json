@@ -7,8 +7,17 @@
     "url": "https://github.com/michalkowol/webpack-seed"
   },
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "bootstrap": "3.3.x",
+    "immutable": "3.8.x",
+    "jquery": "3.1.x",
+    "lodash": "4.17.x",
+    "react": "15.4.x",
+    "react-redux": "5.0.x",
+    "redux": "3.6.x"
+  },
   "devDependencies": {
-    "webpack": "2.2.x"
+    "webpack": "2.2.x",
+    "webpack-dev-server": "2.2.x"
   }
 }
