@@ -4,14 +4,14 @@
 
 ## Development
 
-### Pre-requisites
+## Pre-requisites
 
 ```
 brew update
 brew install yarn
 ```
 
-### Usage
+## Usage
 
 ```bash
 yarn
