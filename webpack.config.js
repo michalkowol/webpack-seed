@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 const prod = process.env.NODE_ENV === 'production';
+const port = process.env.PORT || 3000;
 
 module.exports = {
   devtool: prod ? '' : 'source-map',
@@ -9,7 +10,7 @@ module.exports = {
     './src/js/index'
   ] : [
     'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:3000',
+    'webpack-dev-server/client?http://localhost:' + port,
     'webpack/hot/only-dev-server',
     './src/js/index'
   ],
@@ -28,6 +29,17 @@ module.exports = {
         test: /\.jsx?$/,
         use: ['babel-loader'],
         exclude: /node_modules/
+      }, {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader?sourceMap', 'resolve-url-loader'],
+        exclude: /node_modules/
+      }, {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader?sourceMap', 'resolve-url-loader', 'sass-loader?sourceMap'],
+        exclude: /node_modules/
+      }, {
+        test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)$/i,
+        use: ['file-loader?name=[path][name].[ext]']
       }
     ]
   },
@@ -41,8 +53,11 @@ module.exports = {
   ],
   devServer: {
     host: 'localhost',
-    port: 3000,
-    hot: true,
-    contentBase: './src'
+    port: port,
+    hot: !prod,
+    contentBase: './src',
+    proxy: {
+      "/api": "http://localhost:8080"
+    }
   }
-}
+};
