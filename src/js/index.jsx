@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Greeting from 'js/Greeting.jsx';
-import 'js/foo.jsx';
+import Greeting from 'js/Greeting';
 
 const rootEl = document.getElementById('app');
 ReactDOM.render(<Greeting name='Michał Kowol' />, rootEl);
