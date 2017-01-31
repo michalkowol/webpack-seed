@@ -1,8 +1,16 @@
-const path = require('path');
 const webpack = require('webpack');
+const path = require('path');
+
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const prod = process.env.NODE_ENV === 'production';
 const port = process.env.PORT || 3000;
+
+const extractStyle = new ExtractTextPlugin({
+    filename: 'main.css',
+    disable: !prod
+});
 
 module.exports = {
   devtool: prod ? '' : 'source-map',
@@ -31,22 +39,43 @@ module.exports = {
         exclude: /node_modules/
       }, {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader?sourceMap', 'resolve-url-loader'],
+        use: extractStyle.extract({
+          loader: [{
+              loader: 'css-loader', options: {sourceMap: !prod}
+          }, {
+              loader: 'resolve-url-loader'
+          }],
+          fallbackLoader: 'style-loader'
+        }),
         exclude: /node_modules/
       }, {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader?sourceMap', 'resolve-url-loader', 'sass-loader?sourceMap'],
+        use: extractStyle.extract({
+          loader: [{
+              loader: 'css-loader', options: {sourceMap: !prod}
+          }, {
+              loader: 'resolve-url-loader'
+          }, {
+              loader: 'sass-loader', options: {sourceMap: true}
+          }],
+          fallbackLoader: 'style-loader'
+        }),
         exclude: /node_modules/
       }, {
         test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)$/i,
-        use: ['file-loader?name=[path][name].[ext]']
+        use: [{
+          loader: 'file-loader', options: {name: '[path][name].[ext]'}
+        }]
       }
     ]
   },
   plugins: prod ? [
+    extractStyle,
     new webpack.DefinePlugin({'process.env': {NODE_ENV: JSON.stringify('production')}}),
-    new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.UglifyJsPlugin(),
+    new OptimizeCssAssetsPlugin()
   ] : [
+    extractStyle,
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin()
@@ -54,7 +83,8 @@ module.exports = {
   devServer: {
     host: 'localhost',
     port: port,
-    hot: !prod,
+    hot: true,
+    open: true,
     contentBase: './src',
     proxy: {
       "/api": "http://localhost:8080"
