@@ -25,6 +25,7 @@
     "redux": "3.6.x"
   },
   "devDependencies": {
+    "@types/react": "^15.0.5",
     "babel-core": "6.22.x",
     "babel-eslint": "7.1.x",
     "babel-loader": "6.2.x",
@@ -55,6 +56,8 @@
     "resolve-url-loader": "1.6.x",
     "sass-loader": "4.1.x",
     "style-loader": "0.13.x",
+    "ts-loader": "^2.0.0",
+    "typescript": "^2.1.5",
     "webpack": "2.2.x",
     "webpack-dev-server": "2.2.x"
   }

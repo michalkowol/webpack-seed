@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Greeting from 'js/Greeting';
+import Repo from 'js/Repo';
 
 const rootEl = document.getElementById('app');
-ReactDOM.render(<Greeting name='Michał Kowol' />, rootEl);
+ReactDOM.render(<Repo userName="michalkowol" repoName='webpack-seed' />, rootEl);
 
 require('css/main.scss');
 require('file-loader?name=[name].[ext]!index.html');

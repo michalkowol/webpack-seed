@@ -11,11 +11,15 @@ module.exports = function (config) {
       devtool: 'inline-source-map',
       resolve: {
         modules: ['node_modules', 'src', 'static'],
-        extensions: ['.js', '.jsx']
+        extensions: ['.js', '.jsx', '.ts', '.tsx']
       },
       module: {
         rules: [
           {
+            test: /\.tsx?$/,
+            use: ['ts-loader'],
+            exclude: /node_modules/
+          }, {
             test: /\.jsx?$/,
             use: ['babel-loader'],
             exclude: /node_modules/
