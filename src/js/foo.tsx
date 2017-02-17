@@ -1,1 +1,0 @@
-export default (text: string): string => `Hello ${text}!`;
